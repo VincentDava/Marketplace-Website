@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="DatabaseModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="productColor" ColumnName="productColor" />
+          <ScalarProperty Name="productSize" ColumnName="productSize" />
+          <ScalarProperty Name="cartId" ColumnName="cartId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColorOptions">
+      <EntityTypeMapping TypeName="DatabaseModel.ColorOption">
+        <MappingFragment StoreEntitySet="ColorOption">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="colorName" ColumnName="colorName" />
+          <ScalarProperty Name="optionId" ColumnName="optionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="DatabaseModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="commentId" ColumnName="commentId" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="commentRating" ColumnName="commentRating" />
+          <ScalarProperty Name="commentTitle" ColumnName="commentTitle" />
+          <ScalarProperty Name="commentContent" ColumnName="commentContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="DatabaseModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerPassword" ColumnName="customerPassword" />
+          <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+          <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
+          <ScalarProperty Name="customerRole" ColumnName="customerRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DatabaseModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+          <ScalarProperty Name="productImage" ColumnName="productImage" />
+          <ScalarProperty Name="productDesc" ColumnName="productDesc" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="productRating" ColumnName="productRating" />
+          <ScalarProperty Name="productCategory" ColumnName="productCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SizeOptions">
+      <EntityTypeMapping TypeName="DatabaseModel.SizeOption">
+        <MappingFragment StoreEntitySet="SizeOption">
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="productSize" ColumnName="productSize" />
+          <ScalarProperty Name="optionId" ColumnName="optionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionDetails">
+      <EntityTypeMapping TypeName="DatabaseModel.TransactionDetail">
+        <MappingFragment StoreEntitySet="TransactionDetail">
+          <ScalarProperty Name="transactionId" ColumnName="transactionId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="transactionDetailId" ColumnName="transactionDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionHeaders">
+      <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
+        <MappingFragment StoreEntitySet="TransactionHeader">
+          <ScalarProperty Name="transactionId" ColumnName="transactionId" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

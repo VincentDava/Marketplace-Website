@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cartId" />
+    </Key>
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="productColor" Type="varchar" MaxLength="50" />
+    <Property Name="productSize" Type="varchar" MaxLength="50" />
+    <Property Name="cartId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ColorOption">
+    <Key>
+      <PropertyRef Name="optionId" />
+    </Key>
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="colorName" Type="varchar" MaxLength="50" />
+    <Property Name="optionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="int" Nullable="false" />
+    <Property Name="customerId" Type="int" />
+    <Property Name="productId" Type="int" />
+    <Property Name="commentRating" Type="float" />
+    <Property Name="commentTitle" Type="varchar" MaxLength="255" />
+    <Property Name="commentContent" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="customerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customerPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="customerEmail" Type="varchar" MaxLength="50" />
+    <Property Name="customerAddress" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="customerRole" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="productName" Type="varchar" MaxLength="50" />
+    <Property Name="productPrice" Type="int" />
+    <Property Name="productImage" Type="varchar" MaxLength="255" />
+    <Property Name="productDesc" Type="varchar" MaxLength="255" />
+    <Property Name="customerId" Type="int" />
+    <Property Name="productRating" Type="float" />
+    <Property Name="productCategory" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SizeOption">
+    <Key>
+      <PropertyRef Name="optionId" />
+    </Key>
+    <Property Name="productId" Type="int" Nullable="false" />
+    <Property Name="productSize" Type="varchar" MaxLength="50" />
+    <Property Name="optionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionDetail">
+    <Key>
+      <PropertyRef Name="transactionDetailId" />
+    </Key>
+    <Property Name="transactionId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="transactionDetailId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionHeader">
+    <Key>
+      <PropertyRef Name="transactionId" />
+    </Key>
+    <Property Name="transactionId" Type="int" Nullable="false" />
+    <Property Name="transactionDate" Type="date" />
+    <Property Name="customerId" Type="int" />
+    <Property Name="address" Type="varchar" MaxLength="255" />
+    <Property Name="paymentMethod" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Cart_To_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_To_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ColorOption_To_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ColorOption" Type="Self.ColorOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="ColorOption">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_To_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_To_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_To_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SizeOption_To_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SizeOption" Type="Self.SizeOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="SizeOption">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetail_To_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionDetail_To_TransactionHeader">
+    <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="1" />
+    <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionHeader">
+        <PropertyRef Name="transactionId" />
+      </Principal>
+      <Dependent Role="TransactionDetail">
+        <PropertyRef Name="transactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionHeader_To_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="TransactionHeader">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColorOption" EntityType="Self.ColorOption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SizeOption" EntityType="Self.SizeOption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionHeader" EntityType="Self.TransactionHeader" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cart_To_Customer" Association="Self.FK_Cart_To_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_To_Product" Association="Self.FK_Cart_To_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColorOption_To_Product" Association="Self.FK_ColorOption_To_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ColorOption" EntitySet="ColorOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_To_Customer" Association="Self.FK_Comment_To_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_To_Product" Association="Self.FK_Comment_To_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_To_Customer" Association="Self.FK_Product_To_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SizeOption_To_Product" Association="Self.FK_SizeOption_To_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SizeOption" EntitySet="SizeOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetail_To_Product" Association="Self.FK_TransactionDetail_To_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionDetail_To_TransactionHeader" Association="Self.FK_TransactionDetail_To_TransactionHeader">
+      <End Role="TransactionHeader" EntitySet="TransactionHeader" />
+      <End Role="TransactionDetail" EntitySet="TransactionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionHeader_To_Customer" Association="Self.FK_TransactionHeader_To_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="TransactionHeader" EntitySet="TransactionHeader" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage-Customer.master.cs" Inherits="Nusama.View.MasterPage_Customer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="StyleSheets" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/Navigation.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/Main.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="nav">
+                <a href="Homepage.aspx">
+                <asp:Image ID="LogoImage" runat="server" width="100px" Height="20px"/>
+                </a>
+                <div class="search__wrapper">
+                    <asp:TextBox ID="searchBar" runat="server" class="search-bar"></asp:TextBox>
+                    <asp:Button ID="searchButton" class="btn btn__search" runat="server" Text="Search" />
+                </div>
+                <div class="nav__wrapper"> 
+                    <asp:Label ID="nameBox" runat="server" Text="Username"></asp:Label>
+                    <asp:Button ID="logOutBtn"  runat="server" class="btn" Text="Log Out" OnClick="logOutBtn_Click"/>
+                </div>
+                <br />
+            </div>
+            <div class="cart__wrapper">
+                <asp:ImageButton ID="cartBtn" class="logo__cart" ImageUrl="../Assets/cartLogo.png" runat="server" Text="Cart" OnClick="cartBtn_Click"/>
+                <asp:Button ID="tranListBtn" class="btn" runat="server" Text="Transaction List" OnClick="tranListBtn_Click"/>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

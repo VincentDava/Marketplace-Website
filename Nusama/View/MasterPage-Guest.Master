@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage-Guest.master.cs" Inherits="Nusama.View.MasterPage_Guest" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="StyleSheets" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../CSS/Navigation.css" rel="stylesheet" type="text/css" />
+    <link href="../CSS/Main.css" rel="stylesheet" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="nav">
+                <a href="Homepage.aspx">
+                    <asp:Image ID="LogoImage" runat="server" width="100px" Height="20px"/>
+                </a>
+                <div class="search__wrapper">
+                    <asp:TextBox ID="searchBar" runat="server" class="search-bar"></asp:TextBox>
+                    <asp:Button ID="searchButton" class="btn btn__search" runat="server" Text="Search" OnClick="searchButton_Click"/>
+                </div>
+                <div class ="nav__wrapper">
+                    <asp:Label runat="server" Text="Guest"></asp:Label>
+                    <asp:Button ID="loginBtn" class="btn" runat="server" Text="Login" OnClick="loginBtn_Click"/>
+                    <asp:Button ID="registerBtn" class="btn" runat="server" Text="Register" OnClick="registerBtn_Click"/>
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
